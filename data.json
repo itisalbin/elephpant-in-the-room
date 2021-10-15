@@ -1,0 +1,29 @@
+{
+  "animals": [
+    {
+      "name": "Crocodile",
+      "legs": 4,
+      "lives": 1
+    },
+    {
+      "name": "Octopus",
+      "legs": 8,
+      "lives": 1
+    },
+    {
+      "name": "Cat",
+      "legs": 4,
+      "lives": 9
+    },
+    {
+      "name": "Dog",
+      "legs": 4,
+      "lives": 1
+    },
+    {
+      "name": "Human",
+      "legs": 2,
+      "lives": 1
+    }
+  ]
+}
