@@ -1,28 +1,45 @@
 {
   "animals": [
     {
-      "name": "Crocodile",
-      "legs": 4,
-      "lives": 1
-    },
-    {
-      "name": "Octopus",
-      "legs": 8,
-      "lives": 1
-    },
-    {
       "name": "Cat",
+      "age": 16,
       "legs": 4,
       "lives": 9
     },
     {
+      "name": "Crocodile",
+      "age": 70,
+      "legs": 4,
+      "lives": 1
+    },
+    {
       "name": "Dog",
+      "age": 13,
       "legs": 4,
       "lives": 1
     },
     {
       "name": "Human",
+      "age": 80,
       "legs": 2,
+      "lives": 1
+    },
+    {
+      "name": "Octopus",
+      "age": 5,
+      "legs": 8,
+      "lives": 1
+    },
+    {
+      "name": "Rabbit",
+      "age": 9,
+      "legs": 4,
+      "lives": 1
+    },
+    {
+      "name": "Turtle",
+      "age": 100,
+      "legs": 4,
       "lives": 1
     }
   ]

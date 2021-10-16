@@ -2,26 +2,30 @@
 
 <main>
 
-    <section class="compare-section">
-        <h2 class="current-topic-header"> - - - </h2>
-        <div class="animal-data-container">
+    <?php
+    //Convert json to php array
+    $jsonArray = file_get_contents("data.json");
+    $animalsArray = json_decode($jsonArray, true);
+    ?>
 
-        </div>
+    <section class="compare-section">
+        <div class="animal-data-container"></div>
+        <h2 class="current-topic-header"></h2>
     </section>
 
     <section class="filter-topics-section">
-        asfasfas
+        <?php $topics = array_keys($animalsArray['animals'][0]) ?>
+        <?php for ($i = 1; $i < count($topics); $i++) : ?>
+            <button onclick="doTopicsFilter('<?= $topics[$i] ?>')"><?= $topics[$i] ?></button>
+        <?php endfor ?>
     </section>
 
     <section class="animal-section">
-        <?php
-        //Convert json to php array
-        $jsonArray = file_get_contents("data.json");
-        $animalsArray = json_decode($jsonArray, true);
-        ?>
+
 
         <!-- Checkbox form -->
-        <form action='#' , method="POST">
+        <form method="POST">
+            <input type="submit" name="submit" value='Compare'>
             <?php $i = 0; ?>
             <!-- Create checkboxes - Only checked will be added to $_POST['submit'] when submiting.
             Save $i, which will be the index to the json table -->
@@ -30,7 +34,7 @@
                 <label><input type="checkbox" name="check_list[]" value="<?= $i ?>"><?= $name ?></label>
                 <?php $i++ ?>
             <?php endforeach ?>
-            <input type="submit" name="submit" value='Compare'>
+
         </form>
 
         <!-- Recieve checked  -->

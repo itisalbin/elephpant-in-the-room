@@ -28,41 +28,67 @@ main {
 }
 
 .topic-container {
-  display: flex;
+  display: none;
   align-items: flex-end;
 }
 
 .data-point-container {
-  width: 50px;
+  width: 64px;
   margin: 10px;
   text-align: center;
 }
 
 .topic-value {
-  margin: 10px 0;
-  padding: 10px;
+  animation: 0.5s linear 0s 1 topicValueAnimation;
+  margin: 10px auto;
+  width: 50px;
+  height: 50px;
+  padding-top: 11px;
   font-size: 24px;
   border-radius: 100px;
-  background-color: #ddd;
+  background-color: #333;
+  color: #fff;
+}
+
+.animal-name {
+  animation: 0.5s linear 0s 1 topicValueAnimation;
+  font-size: 18px;
+  color: #333;
 }
 
 .animal-section {
-  display: flex;
   background-color: #eee;
 }
 
+.animal-section,
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .bar {
-  animation: 0.5s linear 0s 1 slideUpBar;
+  animation: 0.5s linear 0s 1 slideUpBarAnimation;
   transform-origin: bottom;
   animation-fill-mode: forwards;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  width: 40px;
+  margin: auto;
 }
 
-@keyframes slideUpBar {
+.current-topic-header {
+  font-size: 64px;
+  margin: 20px;
+  text-transform: capitalize;
+  margin-top: 0;
+  margin-bottom: 6vh;
+  color: #333;
+}
+
+@keyframes slideUpBarAnimation {
   0% {
     transform: scaleY(0);
-    background-color: transparent;
+    opacity: 0;
   }
   80% {
     transform: scaleY(1);
@@ -72,12 +98,22 @@ main {
   }
   100% {
     transform: scaleY(1);
-    background-color: rgb(255, 207, 117);
+    background-image: linear-gradient(rgb(255, 196, 108), rgb(255, 101, 101));
+    opacity: 1;
   }
 }
 
-.current-topic-header {
-  font-size: 64px;
-  margin: 20px;
-  text-transform: capitalize;
+@keyframes topicValueAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

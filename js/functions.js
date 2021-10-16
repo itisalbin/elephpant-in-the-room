@@ -36,6 +36,10 @@ function drawData(animalsData, animalIndexes) {
       //Animal Container
       const dataPointContainer = createDOMObject('div', 'data-point-container', '', topicDiv);
 
+      //Name
+      animalName = animals[animalIndexes[j]][keys[0]];
+      createDOMObject('p', 'animal-name', animalName, dataPointContainer);
+
       //Topic value
       topicValue = animals[animalIndexes[j]][keys[i]];
       createDOMObject('p', 'topic-value', topicValue, dataPointContainer);
@@ -43,15 +47,10 @@ function drawData(animalsData, animalIndexes) {
       //Bar
       const bar = createDOMObject('div', 'bar', '', dataPointContainer);
       bar.style.height = (topicValue / highestTopicVal) * 60 + 'vh';
-
-      //Name
-      animalName = animals[animalIndexes[j]][keys[0]];
-      createDOMObject('p', 'animal-name', animalName, dataPointContainer);
     }
   }
-  //This will only pick the last now, put this later in filter function
-  const currentTopicHeader = document.getElementsByClassName('current-topic-header')[0];
-  currentTopicHeader.innerHTML = topic;
+
+  doTopicsFilter('age');
 }
 
 function createDOMObject(divType, className, innerHTML, parentTag) {
@@ -60,4 +59,18 @@ function createDOMObject(divType, className, innerHTML, parentTag) {
   newTag.innerHTML = innerHTML;
   parentTag.appendChild(newTag);
   return newTag;
+}
+
+function doTopicsFilter(buttonTopic) {
+  const topicContainers = document.getElementsByClassName('topic-container');
+
+  for (let i = 0; i < topicContainers.length; i++) {
+    if (topicContainers[i].className.search(buttonTopic) == -1) {
+      topicContainers[i].style.display = 'none';
+    } else {
+      topicContainers[i].style.display = 'flex';
+      const currentTopicHeader = document.getElementsByClassName('current-topic-header')[0];
+      currentTopicHeader.innerHTML = buttonTopic;
+    }
+  }
 }
