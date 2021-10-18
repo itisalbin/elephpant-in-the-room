@@ -4,43 +4,50 @@
       "name": "Cat",
       "age": 16,
       "legs": 4,
-      "lives": 9
+      "lives": 9,
+      "speed": 48
     },
     {
       "name": "Crocodile",
       "age": 70,
       "legs": 4,
-      "lives": 1
+      "lives": 1,
+      "speed": 35
     },
     {
       "name": "Dog",
       "age": 13,
       "legs": 4,
-      "lives": 1
+      "lives": 1,
+      "speed": 72
     },
     {
       "name": "Human",
       "age": 80,
       "legs": 2,
-      "lives": 1
+      "lives": 1,
+      "speed": 13
     },
     {
       "name": "Octopus",
       "age": 5,
       "legs": 8,
-      "lives": 1
+      "lives": 1,
+      "speed": 40
     },
     {
       "name": "Rabbit",
       "age": 9,
       "legs": 4,
-      "lives": 1
+      "lives": 1,
+      "speed": 40
     },
     {
-      "name": "Turtle",
-      "age": 100,
+      "name": "Tortoise",
+      "age": 150,
       "legs": 4,
-      "lives": 1
+      "lives": 1,
+      "speed": 1
     }
   ]
 }

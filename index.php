@@ -11,14 +11,17 @@
     <section class="compare-section">
         <div class="animal-data-container"></div>
         <h2 class="current-topic-header"></h2>
+
+        <section class="filter-topics-section">
+            <?php $topics = array_keys($animalsArray['animals'][0]) ?>
+            <?php for ($i = 1; $i < count($topics); $i++) : ?>
+                <button class="filter-button" onclick="doTopicsFilter('<?= $topics[$i] ?>')"><?= $topics[$i] ?></button>
+            <?php endfor ?>
+        </section>
+
     </section>
 
-    <section class="filter-topics-section">
-        <?php $topics = array_keys($animalsArray['animals'][0]) ?>
-        <?php for ($i = 1; $i < count($topics); $i++) : ?>
-            <button onclick="doTopicsFilter('<?= $topics[$i] ?>')"><?= $topics[$i] ?></button>
-        <?php endfor ?>
-    </section>
+
 
     <section class="animal-section">
 
