@@ -12,8 +12,6 @@ function removeElementsByClass(className) {
 }
 
 function drawData(animalsData, animalIndexes) {
-  removeElementsByClass('topic-container');
-
   animals = animalsData['animals'];
   keys = Object.keys(animals[0]); //array(3) [ "name", "legs", "lives" ]
 
@@ -81,5 +79,36 @@ function doTopicsFilter(buttonTopic) {
       const currentTopicHeader = document.getElementsByClassName('current-topic-header')[0];
       currentTopicHeader.innerHTML = buttonTopic;
     }
+  }
+}
+
+function onSubmitAnimalForm(submitEvent) {
+  //Prevent submit from refreshing page
+  submitEvent.preventDefault();
+
+  //Remove old topic containers
+  removeElementsByClass('topic-container');
+
+  //Hide animals section
+  displayAnimalSection(false);
+
+  //Get FormData from form
+  const animalsForm = document.getElementById('animalsForm');
+  let formData = new FormData(animalsForm);
+
+  let animalCheckedIndexes = [];
+  for (let data of formData.entries()) {
+    animalCheckedIndexes.push(data[1]);
+  }
+
+  handleAnimalFormData(animalCheckedIndexes);
+}
+
+function displayAnimalSection(show) {
+  const animalSection = document.getElementsByClassName('animal-section')[0];
+  if (show) {
+    animalSection.style.transform = 'translateY(0vh)';
+  } else {
+    animalSection.style.transform = 'translateY(-100vh)';
   }
 }

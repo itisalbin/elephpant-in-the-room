@@ -7,7 +7,10 @@
     $animalsArray = json_decode($jsonArray, true);
     ?>
 
+
+
     <section class="compare-section">
+        <button onclick="displayAnimalSection(true)" class="animal-section-open-button">▼</button>
         <div class="animal-data-container"></div>
         <h2 class="current-topic-header"></h2>
 
@@ -23,36 +26,21 @@
 
 
         <form id="animalsForm" name="animalsForm">
-            <input type="submit" name="submit" value="submit">
             <?php $i = 0 ?>
-            <?php foreach ($animalsArray['animals'] as $animal) : ?>
-                <?php $name = $animal['name'] ?>
-                <label><input type="checkbox" name="checkbox[]" value="<?= $i ?>"><?= $name ?></label>
-                <?php $i++ ?>
-            <?php endforeach ?>
+            <div class="checkboxes-container">
+                <?php foreach ($animalsArray['animals'] as $animal) : ?>
+                    <?php $name = $animal['name'] ?>
+                    <label><input type="checkbox" name="checkbox" value="<?= $i ?>"><?= $name ?></label>
+                    <?php $i++ ?>
+                <?php endforeach ?>
+            </div>
+            <input class="submit-form-button" type="submit" name="submit" value="Compare!">
         </form>
 
         <script>
             //Add event type: "submit" and function to react on event.
             const animalsForm = document.getElementById("animalsForm");
-            animalsForm.addEventListener('submit', onSubmitForm);
-
-            function onSubmitForm(submitEvent) {
-                //Prevent submit from refreshing page
-                submitEvent.preventDefault();
-
-                //Get FormData from form
-                const animalsForm = document.getElementById("animalsForm");
-                let formData = new FormData(animalsForm);
-
-                let animalCheckedIndexes = [];
-                for (let data of formData.entries()) {
-                    animalCheckedIndexes.push(data[1]);
-                }
-
-                handleAnimalFormData(animalCheckedIndexes);
-
-            }
+            animalsForm.addEventListener('submit', onSubmitAnimalForm);
         </script>
 
 
