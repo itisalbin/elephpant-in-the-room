@@ -4,7 +4,16 @@ function handleAnimalFormData(animalIndexes) {
     .then((animalsData) => drawData(animalsData, animalIndexes));
 }
 
+function removeElementsByClass(className) {
+  const elements = document.getElementsByClassName(className);
+  while (elements.length > 0) {
+    elements[0].parentNode.removeChild(elements[0]);
+  }
+}
+
 function drawData(animalsData, animalIndexes) {
+  removeElementsByClass('topic-container');
+
   animals = animalsData['animals'];
   keys = Object.keys(animals[0]); //array(3) [ "name", "legs", "lives" ]
 
