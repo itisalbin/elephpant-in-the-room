@@ -7,8 +7,6 @@
     $animalsArray = json_decode($jsonArray, true);
     ?>
 
-
-
     <section class="compare-section">
         <button onclick="displayAnimalSection(true)" class="animal-section-open-button">▼</button>
         <div class="animal-data-container"></div>
@@ -24,13 +22,15 @@
 
     <section class="animal-section">
 
+        <h1>Pick some animals</h1>
 
         <form id="animalsForm" name="animalsForm">
             <?php $i = 0 ?>
             <div class="checkboxes-container">
                 <?php foreach ($animalsArray['animals'] as $animal) : ?>
                     <?php $name = $animal['name'] ?>
-                    <label><input type="checkbox" name="checkbox" value="<?= $i ?>"><?= $name ?></label>
+                    <input type="checkbox" id="cb<?= $i ?>" class="checkbox" name="checkbox" value="<?= $i ?>">
+                    <label for="cb<?= $i ?>"><?= $name ?></label>
                     <?php $i++ ?>
                 <?php endforeach ?>
             </div>
@@ -42,8 +42,6 @@
             const animalsForm = document.getElementById("animalsForm");
             animalsForm.addEventListener('submit', onSubmitAnimalForm);
         </script>
-
-
     </section>
 
 </main>
