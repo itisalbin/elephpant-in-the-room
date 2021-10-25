@@ -22,7 +22,7 @@
 
     <section class="animal-section">
 
-        <h1>Pick some animals</h1>
+        <h1>Pick up to 5 animals</h1>
 
         <form id="animalsForm" name="animalsForm">
             <?php $i = 0 ?>
@@ -36,6 +36,8 @@
             </div>
             <input class="submit-form-button" type="submit" name="submit" value="Compare!">
         </form>
+
+        <p class="compare-warning"></p>
 
         <script>
             //Add event type: "submit" and function to react on event.

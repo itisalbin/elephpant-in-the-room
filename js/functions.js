@@ -86,15 +86,29 @@ function onSubmitAnimalForm(submitEvent) {
   //Prevent submit from refreshing page
   submitEvent.preventDefault();
 
+  //Get FormData from form
+  const animalsForm = document.getElementById('animalsForm');
+  let formData = new FormData(animalsForm);
+
+  let checkedAmount = 0;
+  for (let data of formData.entries()) {
+    checkedAmount++;
+  }
+
+  const compareWarning = document.getElementsByClassName('compare-warning')[0];
+
+  compareWarning.innerHTML = '';
+
+  if (checkedAmount > 5) {
+    compareWarning.innerHTML = 'You can pick max 5.';
+    return;
+  }
+
   //Remove old topic containers
   removeElementsByClass('topic-container');
 
   //Hide animals section
   displayAnimalSection(false);
-
-  //Get FormData from form
-  const animalsForm = document.getElementById('animalsForm');
-  let formData = new FormData(animalsForm);
 
   let animalCheckedIndexes = [];
   for (let data of formData.entries()) {
