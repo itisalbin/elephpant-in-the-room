@@ -18,6 +18,8 @@ function drawData(animalsData, animalIndexes) {
   //Get compareSection
   const animalDataContainer = document.getElementsByClassName('animal-data-container')[0];
 
+  animDataContHeight = animalDataContainer.clientHeight;
+
   //Loop over every topic and create topic html containers, start on 1 to exclude 'name'.
   for (let i = 1; i < keys.length; i++) {
     //Topic Container
@@ -53,7 +55,8 @@ function drawData(animalsData, animalIndexes) {
 
       //Bar
       const bar = createDOMObject('div', 'bar', '', dataPointContainer);
-      bar.style.height = (topicValue / highestTopicVal) * 60 + 'vh';
+      let valueFraction = topicValue / highestTopicVal;
+      bar.style.height = valueFraction * animDataContHeight * 0.74 - 100 + 'px';
     }
   }
 

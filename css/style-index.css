@@ -21,8 +21,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 50px;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .filter-button {
@@ -45,13 +45,15 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
+  margin: 0 auto;
+  height: 100vh;
 }
 
 .animal-data-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .topic-container {
@@ -237,7 +239,7 @@ input[type='checkbox']:checked + label {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 540px) {
   input[type='checkbox'] + label {
     margin: 6px;
     padding: 10px;
@@ -259,10 +261,44 @@ input[type='checkbox']:checked + label {
   }
 
   .data-point-container {
-    width: 48px;
+    width: 40px;
   }
 
   .bar {
     width: 30px;
+  }
+
+  .topic-value {
+    width: 40px;
+    height: 40px;
+    padding-top: 6px;
+    font-size: 20px;
+  }
+
+  .animal-name {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  .topic-value {
+    width: 30px;
+    height: 30px;
+    padding-top: 2px;
+    font-size: 18px;
+  }
+
+  .bar {
+    width: 20px;
+  }
+
+  .animal-name {
+    font-size: 20px;
+    writing-mode: vertical-lr;
+    margin-left: 9px;
+  }
+
+  .data-point-container {
+    margin: 0;
   }
 }
