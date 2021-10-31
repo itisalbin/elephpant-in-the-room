@@ -56,7 +56,7 @@ function drawData(animalsData, animalIndexes) {
       //Bar
       const bar = createDOMObject('div', 'bar', '', dataPointContainer);
       let valueFraction = topicValue / highestTopicVal;
-      bar.style.height = valueFraction * animDataContHeight * 0.74 - 100 + 'px';
+      bar.style.height = valueFraction * animDataContHeight * 0.6 + 'px';
     }
   }
 
@@ -102,7 +102,10 @@ function onSubmitAnimalForm(submitEvent) {
 
   compareWarning.innerHTML = '';
 
-  if (checkedAmount > 5) {
+  if (checkedAmount < 2) {
+    compareWarning.innerHTML = 'You have to pick at least two.';
+    return;
+  } else if (checkedAmount > 5) {
     compareWarning.innerHTML = 'You can pick max 5.';
     return;
   }

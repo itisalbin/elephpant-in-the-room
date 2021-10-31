@@ -8,7 +8,7 @@
     ?>
 
     <section class="compare-section">
-        <!-- <button onclick="displayAnimalSection(true)" class="animal-section-open-button">▼</button> -->
+        <button onclick="displayAnimalSection(true)" class="animal-section-open-button">▼</button>
         <div class="animal-data-container"></div>
         <h2 class="current-topic-header"></h2>
 
