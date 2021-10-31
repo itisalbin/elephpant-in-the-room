@@ -1,7 +1,23 @@
+//***Fetch not supported by Safari, use xmlhttprequest instead ***/
+
+// function handleAnimalFormData(animalIndexes) {
+//   fetch('data.json')
+//     .then((response) => response.json())
+//     .then((animalsData) => drawData(animalsData, animalIndexes));
+// }
+
 function handleAnimalFormData(animalIndexes) {
-  fetch('data.json')
-    .then((response) => response.json())
-    .then((animalsData) => drawData(animalsData, animalIndexes));
+  let xmlhttp = new XMLHttpRequest();
+  let url = 'data.json';
+
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var animalsData = JSON.parse(this.responseText);
+      drawData(animalsData, animalIndexes);
+    }
+  };
+  xmlhttp.open('GET', url, true);
+  xmlhttp.send();
 }
 
 function removeElementsByClass(className) {
