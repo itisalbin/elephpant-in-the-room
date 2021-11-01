@@ -1,52 +1,87 @@
-//***Fetch not supported by Safari, use xmlhttprequest instead ***/
+//Called when form is submitted on index.php.
+function onSubmitAnimalForm(submitEvent) {
+  //Prevent submit from refreshing page
+  submitEvent.preventDefault();
 
-// function handleAnimalFormData(animalIndexes) {
-//   fetch('data.json')
-//     .then((response) => response.json())
-//     .then((animalsData) => drawData(animalsData, animalIndexes));
-// }
+  //Get FormData from form
+  let animalsForm = document.getElementById('animalsForm');
+  let formData = new FormData(animalsForm);
 
-function handleAnimalFormData(animalIndexes) {
-  let xmlhttp = new XMLHttpRequest();
-  let url = 'data.json';
-
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      var animalsData = JSON.parse(this.responseText);
-      drawData(animalsData, animalIndexes);
+  //Count how many animals were checked
+  let checkedAmount = 0;
+  for (let data of formData.entries()) {
+    if (!isNaN(data[1])) {
+      checkedAmount++;
     }
-  };
-  xmlhttp.open('GET', url, true);
-  xmlhttp.send();
+  }
+
+  let compareWarning = document.getElementsByClassName('compare-warning')[0];
+
+  compareWarning.innerHTML = '';
+
+  //return and show text if checked animals is not in range 2 to 5.
+  if (checkedAmount < 2) {
+    compareWarning.innerHTML = 'You have to pick at least two.';
+    return;
+  } else if (checkedAmount > 5) {
+    compareWarning.innerHTML = 'You can pick max 5.';
+    return;
+  }
+
+  //If animals is 2 to 5, continue below.
+
+  //Remove old topic containers
+  removeElementsByClass('topic-container');
+
+  //Hide animals section (first page)
+  displayAnimalSection(false);
+
+  //Add indexes to new array (The indexes of the checked animals; the ones not checked will not be added to this array.)
+  let animalCheckedIndexes = [];
+
+  //Safari also ads submit value 'Compare!' Check if value is int to exclude it.
+  for (let data of formData.entries()) {
+    if (!isNaN(data[1])) {
+      animalCheckedIndexes.push(data[1]);
+    }
+  }
+
+  //Give index array to handleAnimalFormData
+  handleAnimalFormData(animalCheckedIndexes);
+}
+
+//Get array from the file 'data.json' and send it -along with the index array- to the function 'drawData'.
+function handleAnimalFormData(animalIndexes) {
+  fetch('data.json')
+    .then((response) => response.json())
+    .then((animalsData) => drawData(animalsData, animalIndexes));
 }
 
 function removeElementsByClass(className) {
-  const elements = document.getElementsByClassName(className);
+  let elements = document.getElementsByClassName(className);
   while (elements.length > 0) {
     elements[0].parentNode.removeChild(elements[0]);
   }
 }
 
 function drawData(animalsData, animalIndexes) {
-  animals = animalsData['animals'];
-  keys = Object.keys(animals[0]); //array(3) [ "name", "legs", "lives" ]
+  let animals = animalsData['animals'];
+  let keys = Object.keys(animals[0]); //array(3) [ "name", "legs", "lives" ]
 
   //Get compareSection
-  const animalDataContainer = document.getElementsByClassName('animal-data-container')[0];
-
-  animDataContHeight = animalDataContainer.clientHeight;
+  let animalDataContainer = document.getElementsByClassName('animal-data-container')[0];
+  let animDataContHeight = animalDataContainer.clientHeight;
 
   //Loop over every topic and create topic html containers, start on 1 to exclude 'name'.
   for (let i = 1; i < keys.length; i++) {
     //Topic Container
-    topic = keys[i];
-    const topicDiv = document.createElement('div');
+    let topic = keys[i];
+    let topicDiv = document.createElement('div');
     topicDiv.classList.add('topic-container');
     topicDiv.classList.add(topic);
     animalDataContainer.appendChild(topicDiv);
 
     //Calculate highest number per topic and selected animals
-
     let highestTopicVal = 0;
 
     for (let j = 0; j < animalIndexes.length; j++) {
@@ -59,18 +94,18 @@ function drawData(animalsData, animalIndexes) {
     //Loop over every animal in current topic container and create html tags
     for (let j = 0; j < animalIndexes.length; j++) {
       //Animal Container
-      const dataPointContainer = createDOMObject('div', 'data-point-container', '', topicDiv);
+      let dataPointContainer = createDOMObject('div', 'data-point-container', '', topicDiv);
 
       //Name
-      animalName = animals[animalIndexes[j]][keys[0]];
+      let animalName = animals[animalIndexes[j]][keys[0]];
       createDOMObject('p', 'animal-name', animalName, dataPointContainer);
 
       //Topic value
-      topicValue = animals[animalIndexes[j]][keys[i]];
+      let topicValue = animals[animalIndexes[j]][keys[i]];
       createDOMObject('p', 'topic-value', topicValue, dataPointContainer);
 
       //Bar
-      const bar = createDOMObject('div', 'bar', '', dataPointContainer);
+      let bar = createDOMObject('div', 'bar', '', dataPointContainer);
       let valueFraction = topicValue / highestTopicVal;
       bar.style.height = valueFraction * animDataContHeight * 0.6 + 'px';
     }
@@ -80,7 +115,7 @@ function drawData(animalsData, animalIndexes) {
 }
 
 function createDOMObject(divType, className, innerHTML, parentTag) {
-  const newTag = document.createElement(divType);
+  let newTag = document.createElement(divType);
   newTag.classList.add(className);
   newTag.innerHTML = innerHTML;
   parentTag.appendChild(newTag);
@@ -88,60 +123,21 @@ function createDOMObject(divType, className, innerHTML, parentTag) {
 }
 
 function doTopicsFilter(buttonTopic) {
-  const topicContainers = document.getElementsByClassName('topic-container');
+  let topicContainers = document.getElementsByClassName('topic-container');
 
   for (let i = 0; i < topicContainers.length; i++) {
     if (topicContainers[i].className.search(buttonTopic) == -1) {
       topicContainers[i].style.display = 'none';
     } else {
       topicContainers[i].style.display = 'flex';
-      const currentTopicHeader = document.getElementsByClassName('current-topic-header')[0];
+      let currentTopicHeader = document.getElementsByClassName('current-topic-header')[0];
       currentTopicHeader.innerHTML = buttonTopic;
     }
   }
 }
 
-function onSubmitAnimalForm(submitEvent) {
-  //Prevent submit from refreshing page
-  submitEvent.preventDefault();
-
-  //Get FormData from form
-  const animalsForm = document.getElementById('animalsForm');
-  let formData = new FormData(animalsForm);
-
-  let checkedAmount = 0;
-  for (let data of formData.entries()) {
-    checkedAmount++;
-  }
-
-  const compareWarning = document.getElementsByClassName('compare-warning')[0];
-
-  compareWarning.innerHTML = '';
-
-  if (checkedAmount < 2) {
-    compareWarning.innerHTML = 'You have to pick at least two.';
-    return;
-  } else if (checkedAmount > 5) {
-    compareWarning.innerHTML = 'You can pick max 5.';
-    return;
-  }
-
-  //Remove old topic containers
-  removeElementsByClass('topic-container');
-
-  //Hide animals section
-  displayAnimalSection(false);
-
-  let animalCheckedIndexes = [];
-  for (let data of formData.entries()) {
-    animalCheckedIndexes.push(data[1]);
-  }
-
-  handleAnimalFormData(animalCheckedIndexes);
-}
-
 function displayAnimalSection(show) {
-  const animalSection = document.getElementsByClassName('animal-section')[0];
+  let animalSection = document.getElementsByClassName('animal-section')[0];
   if (show) {
     animalSection.style.transform = 'translateY(0vh)';
   } else {
