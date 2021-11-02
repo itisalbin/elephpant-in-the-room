@@ -1,4 +1,4 @@
-![](https://media.giphy.com/media/jKlOG7dKhAUKc/giphy.gif)
+![](https://media.giphy.com/media/jKlOG7dKhAUKc/source.gif)
 
 # Project Title
 
