@@ -6,7 +6,9 @@ Text about the project and why it exists. This would also be a great place to li
 
 # Installation
 
-Add the installation instructions.
+Clone this repo.
+Start php-server in repo folder.
+Open server adress in browser. (localhost:XXXX)
 
 # Code Review
 
