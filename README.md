@@ -13,13 +13,16 @@ Page can also be found here: http://itisalbin.com/compare-animals/
 
 # Code Review
 
-Code review written by [Jane Doh](https://github.com/username).
+Code review written by [Oliver Davis](https://github.com/DavisDavisDavis).
 
-1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-2. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-3. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-4. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-5. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
+1. `style-index.css` - Try dividing up the CSS into different files for each section E.g one file for media queries or another for css variables.
+2. `style-index.css:275` - Super small detail but when scaling down into mobile view the numbers stop being in the center.
+3. `style-index.css` - When comparing two animals with two long names the text can overlap
+![image](https://user-images.githubusercontent.com/89775852/140076278-9127a042-bb3d-46e3-92e0-aa9dd8fd33e2.png)
+5. `style.css:210-211` - Just an empty css class 🐱  
+6. `index.php:28` - For readability it could be useful to change the variable from $i to $j because the variable is also shared with the for loop above (line 17).
+
+This was a super fun website and probably the most unique one in our class! 👍 Can't wait to see what you will do next.
 
 # Testers
 
