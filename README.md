@@ -1,8 +1,8 @@
 ![](https://media.giphy.com/media/jKlOG7dKhAUKc/source.gif)
 
-# Project Title
+# Compare Animals
 
-Text about the project and why it exists. This would also be a great place to link the project on One.com.
+This page let you pick some animals and compare different statistics about them. E.g. Speed, Age, Legs etc.
 
 # Installation
 
